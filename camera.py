@@ -42,12 +42,13 @@ class Camera():
         x = 500
         x_inc = int(500 / self.FOV)
         for point in rays:
-            pygame.draw.line(screen, [0, 200, 0], self.pos.get_xy(int), point.get_xy(int), 1)
+            if point is not None:
+                pygame.draw.line(screen, [0, 200, 0], self.pos.get_xy(int), point.get_xy(int), 1)
 
-            val = map_to_range(point.data["dist-to-player"], 0, self.sight_dist, 255, 0)
-            wall_height = map_to_range(point.data["dist-to-player"], 0, self.sight_dist, 500, 0)
+                val = map_to_range(point.data["dist-to-player"], 0, self.sight_dist, 255, 0)
+                wall_height = map_to_range(point.data["dist-to-player"], 0, self.sight_dist, 500, 0)
 
-            pygame.draw.rect(screen, [val, val, val], (x, wall_height/4, x_inc, wall_height))
+                pygame.draw.rect(screen, [val, val, val], (x, wall_height/4, x_inc, wall_height))
             x += x_inc
 
     def update(self, key):
