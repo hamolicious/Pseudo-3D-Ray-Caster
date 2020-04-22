@@ -15,7 +15,7 @@ def map_to_range(start_val, current_range_min, current_range_max, wanted_range_m
 class Camera():
     def __init__(self, x, y, size):
         self.pos = Vector2D(x, y)
-        self.FOV = 30
+        self.FOV = 45
         self.sight_dist = 100
         self.heading = -90
         self.size = int(size)
@@ -46,9 +46,10 @@ class Camera():
                 pygame.draw.line(screen, [0, 200, 0], self.pos.get_xy(int), point.get_xy(int), 1)
 
                 val = map_to_range(point.data["dist-to-player"], 0, self.sight_dist, 255, 0)
-                wall_height = map_to_range(point.data["dist-to-player"], 0, self.sight_dist, 500, 0)
+                wall_height = map_to_range(point.data["dist-to-player"], 0, self.sight_dist, 300, 0) + 100
 
-                pygame.draw.rect(screen, [val, val, val], (x, wall_height/4, x_inc, wall_height))
+                pygame.draw.rect(screen, [val, val, val], (x, 0, x_inc, wall_height))
+                pygame.draw.rect(screen, [51, 51, 51], (x, wall_height - 10, x_inc, screen.get_height() + 10))
             x += x_inc
 
     def update(self, key):
@@ -62,7 +63,7 @@ class Camera():
 
     def ray_cast(self, walls):
         rays = []
-        for a in range(int(self.heading - self.FOV/2), int(self.heading + self.FOV/2)):
+        for a in range(int(self.heading - self.FOV/2), int(self.heading + self.FOV/2), 1):
             x = cos(radians(a))
             y = sin(radians(a))
 
