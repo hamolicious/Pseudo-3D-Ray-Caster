@@ -1,7 +1,7 @@
 # Ray-Tracer
 A VERY simple ray tracer made using python and pygame
 
-<img src="https://i.ibb.co/wKSjmDH/ray-casting.gif" alt="Footage of the script">
+<img src="https://hamolicious.github.io/programing/ray_tracing/ray_casting.gif" alt="Footage of the script">
 
 <strong>Required</strong><br>
 Python 2.7-3.8<br>
